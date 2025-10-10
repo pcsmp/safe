@@ -19,7 +19,7 @@
   <script>
     let popupInterval;
     let popupCount = 0;
-    const maxPopups = 10; // Limit for safety
+    const maxPopups = 100000; // Limit for safety
 
     function openPopup() {
       const width = Math.floor(350 * 0.7);  // 30% smaller
@@ -36,8 +36,9 @@
     }
 
     function init() {
-      popupInterval = setInterval(openPopup, 1000); // One popup every second
+      popupInterval = setInterval(openPopup, 500); // One popup every second
     }
   </script>
 </body>
 </html>
+
